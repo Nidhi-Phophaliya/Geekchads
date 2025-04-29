@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Property Search Input Form</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #121212;
+      color: #e0e0e0;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
+    .container {
+      max-width: 500px;
+      margin: 50px auto;
+      padding: 20px;
+      background: #1f1f1f;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7);
+      animation: fadeIn 1s ease-in;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    h1, h2 {
+      color: #bb86fc;
+      text-align: center;
+    }
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: 500;
+    }
+    input, select, button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 8px;
+      border: none;
+      border-radius: 8px;
+      background: #2c2c2c;
+      color: #e0e0e0;
+    }
+    input:focus, select:focus {
+      outline: none;
+      background: #3a3a3a;
+    }
+    button {
+      background: #bb86fc;
+      color: #121212;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s;
+      margin-top: 20px;
+    }
+    button:hover {
+      background: #9b59b6;
+    }
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+<div id="page1" class="container">
+  <h1>Welcome</h1>
+  <h2>Login / Sign Up</h2>
+  <label>Email Address<input type="email" placeholder="Enter your email"></label>
+  <label>Password<input type="password" placeholder="Enter your password"></label>
+  <button onclick="goToPage('page2')">Login</button>
+</div>
+
+<div id="page2" class="container hidden">
+  <h2>Property Type</h2>
+  <label><input type="radio" name="ownerType" value="individual" checked> Individual Property</label>
+  <label><input type="radio" name="ownerType" value="company"> Company-Owned Property</label>
+  <button onclick="goToPage('page3')">Next</button>
+</div>
+
+<div id="page3" class="container hidden">
+  <h2>Property Identification</h2>
+  <label>Property ID / Survey Number<input type="text"></label>
+  <label>Khata / Patta / Mutation Entry No.<input type="text"></label>
+  <label>Plot / Flat No.<input type="text"></label>
+  <label>Floor / Building / Tower Name<input type="text"></label>
+  <label>Registration / Deed Number<input type="text"></label>
+  <label>Type of Property<select><option>Residential</option><option>Commercial</option><option>Agricultural</option><option>Industrial</option></select></label>
+  <label>Land Category<select><option>Urban</option><option>Rural</option></select></label>
+  <button onclick="goToPage('page4')">Next</button>
+</div>
+
+<div id="page4" class="container hidden">
+  <h2>Owner Information</h2>
+  <div id="individualFields">
+    <label>Owner's Full Name<input type="text"></label>
+    <label>Aadhaar (Last 4 Digits)<input type="text"></label>
+  </div>
+  <div id="companyFields" class="hidden">
+    <label>Company Name<input type="text"></label>
+    <label>CIN / LLPIN<input type="text"></label>
+    <label>Charge ID (Optional)<input type="text"></label>
+  </div>
+  <button onclick="goToPage('page5')">Next</button>
+</div>
+
+<div id="page5" class="container hidden">
+  <h2>Location Information</h2>
+  <label>State<select><option>Select State</option></select></label>
+  <label>District<select><option>Select District</option></select></label>
+  <label>Mandal / Taluka / Tehsil<select><option>Select Mandal</option></select></label>
+  <label>Village / City / Town<input type="text"></label>
+  <label>Street / Locality / Sector<input type="text"></label>
+  <label>PIN Code<input type="text"></label>
+  <button onclick="goToPage('page6')">Next</button>
+</div>
+
+<div id="page6" class="container hidden">
+  <h2>Security Details</h2>
+  <label><input type="radio" name="secured" value="no" checked> No</label>
+  <label><input type="radio" name="secured" value="yes"> Yes</label>
+  <div id="securityFields" class="hidden">
+    <label>Bank / Financial Institution Name<input type="text"></label>
+    <label>Security Interest Type<select><option>Mortgage</option><option>Lease</option><option>Lien</option></select></label>
+  </div>
+  <button onclick="goToPage('page7')">Next</button>
+</div>
+
+<div id="page7" class="container hidden">
+  <h2>Verification</h2>
+  <label>Captcha<input type="text" placeholder="Enter Captcha"></label>
+  <button>Submit</button>
+</div>
+
+<script>
+  function goToPage(pageId) {
+    document.querySelectorAll('.container').forEach(page => page.classList.add('hidden'));
+    document.getElementById(pageId).classList.remove('hidden');
+  }
+</script>
+
+</body>
+</html>
